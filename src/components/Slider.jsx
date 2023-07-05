@@ -1,6 +1,6 @@
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@material-ui/icons";
 import { useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { sliderItems } from "../data";
 import { mobile } from "../responsive";
 
@@ -45,6 +45,15 @@ const Slide = styled.div`
   display: flex;
   align-items: center;
   background-color: #${(props) => props.bg};
+
+  @keyframes slider_animation {
+    from {
+      transform: translateX(${(props) => props.slideIndex * -100}vw);
+    }
+    to {
+      transform: translateX(0%);
+    }
+  }
 `;
 
 const ImgContainer = styled.div`

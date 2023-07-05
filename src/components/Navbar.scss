@@ -1,0 +1,68 @@
+.textLanguage {
+  margin: 0 8px;
+
+  &.active {
+    color: blue;
+    font-weight: 600;
+  }
+}
+
+.avatar {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  object-fit: cover;
+  cursor: pointer;
+  position: relative;
+}
+.box {
+  position: absolute;
+  top: 4px;
+  right: -20px;
+  min-width: 180px;
+  min-height: 100px;
+  background-color: white;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.18);
+  &::after {
+    content: "";
+    position: absolute;
+    top: -19px;
+    right: 24px;
+    display: block;
+    border-width: 10px 12px;
+    border-style: solid;
+    border-color: transparent transparent white transparent;
+  }
+  .itemList {
+    list-style-type: none;
+    .item {
+      padding: 10px;
+      color: #333;
+      cursor: pointer;
+      &:hover {
+        background-color: #e6e4e4;
+      }
+    }
+  }
+}
+
+.searchBox {
+  position: relative;
+  background-color: white;
+  width: 400px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.18);
+
+  .itemList {
+    list-style-type: none;
+    .item {
+      padding: 10px;
+      color: #333;
+      cursor: pointer;
+      &:hover {
+        background-color: #e6e4e4;
+      }
+    }
+  }
+}

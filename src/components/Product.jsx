@@ -1,9 +1,15 @@
 import {
+  Favorite,
   FavoriteBorderOutlined,
   SearchOutlined,
   ShoppingCartOutlined,
 } from "@material-ui/icons";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addFavorate, addProduct } from "../redux/cartSlice";
+import "./Product.scss";
 
 const Info = styled.div`
   opacity: 0;
@@ -32,7 +38,7 @@ const Container = styled.div`
   background-color: #f5fbfd;
   position: relative;
 
-  &:hover ${Info}{
+  &:hover ${Info} {
     opacity: 1;
   }
 `;
@@ -67,19 +73,42 @@ const Icon = styled.div`
 `;
 
 const Product = ({ item }) => {
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+  const [favorite, setFavorite] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+
+  // Click add Cart
+  const handleClick = () => {
+    dispatch(addProduct({ ...item }));
+  };
+
+  const hanldeFavorate = () => {
+    !favorite
+      ? setFavorite(true) && setQuantity(quantity + 1)
+      : setFavorite(false) && setQuantity(quantity - 1);
+    dispatch(addFavorate({ favorite, quantity }));
+  };
+
   return (
     <Container>
       <Circle />
       <Image src={item.img} />
       <Info>
         <Icon>
-          <ShoppingCartOutlined />
+          <ShoppingCartOutlined data-id={item._id} onClick={handleClick} />
         </Icon>
         <Icon>
-          <SearchOutlined />
+          <Link to={`/product/${item._id}`}>
+            <SearchOutlined />
+          </Link>
         </Icon>
-        <Icon>
-          <FavoriteBorderOutlined />
+        <Icon onClick={hanldeFavorate}>
+          {favorite ? (
+            <Favorite className="favorite" />
+          ) : (
+            <FavoriteBorderOutlined />
+          )}
         </Icon>
       </Info>
     </Container>

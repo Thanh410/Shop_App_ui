@@ -1,0 +1,22 @@
+.delete {
+  cursor: pointer;
+  color: red;
+}
+
+.btnQuantity {
+  cursor: pointer;
+}
+
+.emptyCart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .textCart {
+    font-size: 30px;
+    color: gray;
+    border: none;
+    text-align: center;
+    text-shadow: 2px 0 5px rgba(0, 0, 0, 0.48);
+  }
+}
